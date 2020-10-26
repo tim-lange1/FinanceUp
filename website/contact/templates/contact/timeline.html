@@ -1,0 +1,23 @@
+{% extends 'contact/base.html'%}
+
+{% block blogContent%}
+    {% if request.user.is_authenticated %}
+    <form action="{% url 'contact:create_post' %}" method="post">
+        {{ post_form }}
+        {% csrf_token %}
+        <button type="submit">Senden</button>
+    </form>
+    {% endif %}
+
+    {% for post in posts %}
+        <p>
+            {{ post.message }} - {{ post.created_at }}
+        </p>
+    {% empty %}
+        {% if user == request.user %}
+        <p> Du hast noch nichts geteilt.</p>
+        {% else %}
+        <p> Der User {{ user.username }} hat noch nichts geteilt.</p>
+    {% endfor %}
+
+{% endblock %}

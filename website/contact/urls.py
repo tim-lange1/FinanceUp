@@ -4,5 +4,7 @@ from . import views
 app_name = 'contact'
 urlpatterns = [
     path('', views.index, name='index'),
-    #path('contact/', views.index, name='contact'),
+    path('<str:username>/timeline/', views.timeline_view, name='timeline'),
+    path('create-post/', views.post_view, name='create_post'),
+
 ]
