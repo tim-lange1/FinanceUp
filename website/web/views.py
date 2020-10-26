@@ -16,9 +16,9 @@ def register_view(request):
     if request.method == "POST":
         register_form = RegisterForm(request.POST)
         if register_form.is_valid():
-            username = register_form.cleaned_data('username')
-            password = register_form.cleaned_data('password')
-            email = register_form.cleaned_data('email')
+            username = register_form.cleaned_data['username']
+            password = register_form.cleaned_data['password']
+            email = register_form.cleaned_data['email']
             User.objects.create_user(username=username, password=password, email=email)
             user = authenticate(request, username=username, password=password)
             if user:
@@ -33,8 +33,8 @@ def login_view(request):
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
-            username = login_form.cleaned_data('username')
-            password = login_form.cleaned_data('password')
+            username = login_form.cleaned_data['username']
+            password = login_form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
@@ -43,7 +43,7 @@ def login_view(request):
 
 @login_required
 def member_view(request):
-    return render(request, 'web/member.html', {'login_form': login_form})
+    return render(request, 'web/member.html')
 
 def logout_view(request):
     logout(request)

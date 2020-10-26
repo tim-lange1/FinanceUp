@@ -8,14 +8,14 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(label='Email eintragen')
 
     def clean_username(self):
-        username = self.cleaned_data('username')
-        if User.objects.filter(username__iexact=username).exist():
+        username = self.cleaned_data['username']
+        if User.objects.filter(username__iexact=username).exists():
             raise forms.ValidationError('Diesen Usernamen gibt es schon')
         return username
 
     def clean_email(self):
-        email = self.cleaned_data('email')
-        if User.objects.filter(email__iexact=email).exist():
+        email = self.cleaned_data['email']
+        if User.objects.filter(email__iexact=email).exists():
             raise forms.ValidationError('Diese Email gibt es schon')
         return email
 
