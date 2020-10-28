@@ -1,17 +1,8 @@
 {% extends 'contact/base.html'%}
+{% load blog %}
 
 {% block blogContent%}
-    <p>
-        Nachricht von: <a href=" url 'contact:timeline' post.user.username ">{{ post.user.username }}</a>
-    </p>
-    <p>
-        {{ post.message }} - {{ post.created_at }}
-    </p>
-    {% if post.user == request.user  %}
-    <form action="{% url 'contact:delete_post' post.id %}" method="post">
-        {{ post_form }}
-        {% csrf_token %}
-        <button type="submit">Löschen</button>
-    </form>
-    {% endif %}
+
+{% blog_post post %}
+
 {% endblock %}
