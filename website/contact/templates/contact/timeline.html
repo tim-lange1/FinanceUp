@@ -12,12 +12,21 @@
     {% for post in posts %}
         <p>
             {{ post.message }} - {{ post.created_at }}
+            <a href="{{ post.get_absolute_url }}">#{{ post.id }}</a>
         </p>
+        {% if post.user == request.user  %}
+            <form action="{% url 'contact:delete_post' post.id %}" method="post">
+                {{ post_form }}
+                {% csrf_token %}
+                <button type="submit">Löschen</button>
+            </form>
+        {% endif %}
     {% empty %}
         {% if user == request.user %}
         <p> Du hast noch nichts geteilt.</p>
         {% else %}
         <p> Der User {{ user.username }} hat noch nichts geteilt.</p>
+        {% endif %}
     {% endfor %}
 
 {% endblock %}
