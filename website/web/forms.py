@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(max_length=35, label='username eintragen')
+    username = forms.CharField(max_length=35, label='Username eintragen')
     password = forms.CharField(min_length=2, max_length=50, label='Passwort eintragen', widget=forms.PasswordInput)
     email = forms.EmailField(label='Email eintragen')
 
@@ -20,5 +20,5 @@ class RegisterForm(forms.Form):
         return email
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=35, label='username eintragen')
+    username = forms.CharField(max_length=35, label='Username eintragen')
     password = forms.CharField(min_length=2, max_length=50, label='Passwort eintragen', widget=forms.PasswordInput)
