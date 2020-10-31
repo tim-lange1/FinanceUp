@@ -1,10 +1,10 @@
-{% extends 'contact/base.html'%}
+{% extends 'dashboard/base.html'%}
 {% load bootstrap4 %}
 {% load blog %}
 
-{% block blogContent%}
+{% block blogContent %}
     {% if request.user.is_authenticated %}
-    <form class="form-inline" action="{% url 'contact:create_post' %}" method="post">
+    <form class="form-inline" action="{% url 'dashboard:create_post' %}" method="post">
         {% bootstrap_form post_form layout='inline' %}
         {% csrf_token %}
         <button type="submit" class="btn btn-primary">Senden</button>

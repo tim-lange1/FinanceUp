@@ -10,13 +10,13 @@ from .models import BlogPost
 
 
 def index(request):
-    return render(request, 'contact/base.html')
+    return render(request, 'dashboard/base.html')
 
 def timeline_view(request, username):
     post_form = PostForm()
     user = get_object_or_404(User, username=username)
     posts = BlogPost.objects.filter(user=user).order_by('-created_at')
-    return render(request, 'contact/timeline.html', {'posts': posts, 'post_form': post_form, 'user': user})
+    return render(request, 'dashboard/timeline.html', {'posts': posts, 'post_form': post_form, 'user': user})
 
 @login_required
 @require_POST
@@ -26,7 +26,7 @@ def create_post_view(request):
         post = post_form.save(commit=False)
         post.user = request.user
         post.save()
-    return HttpResponseRedirect(reverse('contact:timeline', kwargs={'username': request.user.username}))
+    return HttpResponseRedirect(reverse('dashboard:timeline', kwargs={'username': request.user.username}))
 
 
 @login_required
@@ -34,9 +34,9 @@ def create_post_view(request):
 def delete_post_view(request, post_id):
     post = get_object_or_404(BlogPost, id=post_id, user=request.user)
     post.delete()
-    return HttpResponseRedirect(reverse('contact:timeline', kwargs={'username': request.user.username}))
+    return HttpResponseRedirect(reverse('dashboard:timeline', kwargs={'username': request.user.username}))
 
 
 def post_view(request, post_id):
     post = get_object_or_404(BlogPost, id=post_id)
-    return render(request, 'contact/post.html', {'post': post})
+    return render(request, 'dashboard/post.html', {'post': post})

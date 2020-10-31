@@ -10,7 +10,7 @@ def index(request):
 
 def register_view(request):
     if request.user.is_authenticated:
-        return redirect(reverse('contact:timeline', kwargs={'username': request.user.username}))
+        return redirect(reverse('dashboard:timeline', kwargs={'username': request.user.username}))
     register_form = RegisterForm()
     if request.method == "POST":
         register_form = RegisterForm(request.POST)
@@ -22,12 +22,12 @@ def register_view(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect(reverse('contact:timeline', kwargs={'username': request.user.username}))
+                return redirect(reverse('dashboard:timeline', kwargs={'username': request.user.username}))
     return render(request, 'web/register.html', {'register_form': register_form})
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect(reverse('contact:timeline', kwargs={'username': request.user.username}))
+        return redirect(reverse('dashboard:timeline', kwargs={'username': request.user.username}))
     login_form = LoginForm()
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
@@ -37,7 +37,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect(reverse('contact:timeline', kwargs={'username': request.user.username}))
+                return redirect(reverse('dashboard:timeline', kwargs={'username': request.user.username}))
     return render(request, 'web/login.html', {'login_form': login_form})
 
 def logout_view(request):

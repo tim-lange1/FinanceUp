@@ -1,16 +1,17 @@
 {% load blog %}
+
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <a href=" url 'contact:timeline' post.user.username ">{{ post.user.username|to_uppercase }}</a> {{willkommen}}
+                <a href=" url 'dashboard:timeline' post.user.username ">{{ post.user.username|to_uppercase }}</a> {{willkommen}}
             </div>
             <div class="card-body">
                 <p class="card-text">
                     {{ post.message|linebreaksbr }}
                 </p>
                 {% if post.user == request.user  %}
-                <form action="{% url 'contact:delete_post' post.id %}" method="post">
+                <form action="{% url 'dashboard:delete_post' post.id %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-outline-danger">Löschen</button>
                 </form>

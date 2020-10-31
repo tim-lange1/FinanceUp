@@ -2,7 +2,7 @@ from django import template
 
 register = template.Library()
 
-@register.inclusion_tag('contact/partials/blog_post.html')
+@register.inclusion_tag('dashboard/partials/blog_post.html')
 def blog_post(post):
     return {'post': post, 'willkommen': 'Moin bimsknzn'}
 

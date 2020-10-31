@@ -12,5 +12,5 @@ class PostForm(forms.ModelForm):
             'message': 'Deine Nachricht'
         }
         widgets = {
-            'message':forms.Textarea(attrs={'rows': 3})
+            'message': forms.Textarea(attrs={'rows': 3})
         }

@@ -9,4 +9,4 @@ class BlogPost(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def get_absolute_url(self):
-        return reverse('contact:post', kwargs={'post_id': self.id})
+        return reverse('dashboard:post', kwargs={'post_id': self.id})
