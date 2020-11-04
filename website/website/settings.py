@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'web',
     'bootstrap4',
     'Stammdaten',
+    'bookinglist',
+    'evaluations',
+
 ]
 
 MIDDLEWARE = [
